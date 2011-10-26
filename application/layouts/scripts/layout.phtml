@@ -1,1 +1,53 @@
-<?php echo $this->layout()->content; ?>
+<?php
+	echo $this->doctype('HTML5') . PHP_EOL;
+?>
+<html lang="de"> 
+	<head> 
+		<?php
+			echo $this->headMeta()
+				->setCharset('UTF-8')
+				->appendHttpEquiv('Content-Type', 'text/html; charset=UTF-8')
+				. PHP_EOL;
+			
+			echo $this->headTitle('zf project test') . PHP_EOL;
+			
+			echo $this->headLink()
+				->appendStylesheet('/css/reset.css', 'screen')
+				->appendStylesheet('/css/basic.css', 'screen') 
+				. PHP_EOL;
+		
+			echo $this->headStyle() . PHP_EOL;
+		?>
+	</head>
+	<body>
+		<div id="header">
+			<div class="container">
+				<span id="logo">Welcome to the <span class="green">Zend Framework</span> Test!</span>
+				<a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'index'), null, true); ?>">Index</a> 
+				<?php if (Zend_Auth::getInstance()->hasIdentity()) { ?>
+				<a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'logout'), null, true); ?>">Logout</a>
+				<?php if (Zend_Auth::getInstance()->getIdentity()->role == 'admin') { ?>
+				<a href="<?php echo $this->url(array('controller' => 'admin', 'action' => 'index'), null, true); ?>">Admin</a>
+				<?php }
+						} else { ?>
+				<a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'login'), null, true); ?>">Login</a>
+				<?php } ?>
+			</div>
+		</div>
+		
+		<div id="content" class="container">
+			<?php
+				echo $this->layout()->content;
+			?>
+		</div>
+		
+		<div id="footer" class="container">
+		</div>
+		
+		<?php
+			echo $this->headScript()
+				->prependFile('https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js')
+				. PHP_EOL;
+		?>
+	</body>
+</html>
