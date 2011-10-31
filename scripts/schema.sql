@@ -5,10 +5,13 @@
 
 CREATE TABLE IF NOT EXISTS `log` (
   `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `message` text NOT NULL,
-  `errno` int(11) NOT NULL,
-  `file` text NOT NULL,
-  `line` int(11) NOT NULL,
-  `context` text NOT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `priority` int(11) NOT NULL,
+  `priorityName` text NOT NULL,
+  `info` text NOT NULL,
+  `controller` text NOT NULL,
+  `action` text NOT NULL,
+  `module` text NOT NULL,
+  PRIMARY KEY (`id`)
 );

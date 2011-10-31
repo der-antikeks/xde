@@ -53,6 +53,24 @@ class ErrorController extends Zend_Controller_Action
         return $log;
     }
 
+    public function noadminAction()
+    {
+        $this->view->message = 'Administrator permission required';
+		$this->render('error');
+    }
+
+    public function noauthAction()
+    {
+        $this->view->message = 'User permission required';
+		$this->render('error');
+    }
+
+    public function unknownuserAction()
+    {
+        $this->view->message = 'Unknown User';
+		$this->render('error');
+    }
+
 
 }
 
