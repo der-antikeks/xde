@@ -12,6 +12,6 @@ CREATE TABLE IF NOT EXISTS `log` (
   `info` text NOT NULL,
   `controller` text NOT NULL,
   `action` text NOT NULL,
-  `module` text NOT NULL,
-  PRIMARY KEY (`id`)
-);
+  `module` text NOT NULL
+  }
+  

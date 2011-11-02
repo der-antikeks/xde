@@ -1,0 +1,12 @@
+git status
+
+# getting current data from remote
+git fetch [remote-name]
+git merge [[remote-name]/[branch-name]]
+
+# updating local repository
+git add [file-name]
+git commit -m 'description'
+
+# uploading local to remote
+git push [remote-name] [branch-name]
