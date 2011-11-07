@@ -1,6 +1,6 @@
 <?php
 
-class IndexController extends Zend_Controller_Action
+class AdminController extends Zend_Controller_Action
 {
 
     public function init()
@@ -16,16 +16,19 @@ class IndexController extends Zend_Controller_Action
 
     public function preDispatch()
     {
-        if ($this->identity) {
-            $this->_forward('index', 'Base');
+        if (! $this->identity) {
+            $this->_forward('unknownuser', 'Error');
+        } elseif (! ($this->identity->role == 'admin')) {
+            $this->_forward('noadmin', 'Error');
         }
         
     }
     
     public function indexAction()
     {
-        $this->_helper->layout->setLayout('prelogin');
-        
+        // action body
     }
-    
+
+
 }
+

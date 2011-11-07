@@ -23,16 +23,7 @@
 		<div id="header">
 			<div class="container">
 				<span id="logo">Welcome to the <span class="green">XDE</span> Test!</span>
-				<a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'index'), null, true); ?>">Index</a> 
-				<?php if (Zend_Auth::getInstance()->hasIdentity()) { ?>
-				<a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'logout'), null, true); ?>">Logout</a>
-                    <a href="<?php echo $this->url(array('controller' => 'base', 'action' => 'index'), null, true); ?>">Base</a>
-				<?php if (Zend_Auth::getInstance()->getIdentity()->role == 'admin') { ?>
-				<a href="<?php echo $this->url(array('controller' => 'admin', 'action' => 'index'), null, true); ?>">Admin</a>
-				<?php }
-						} else { ?>
 				<a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'login'), null, true); ?>">Login</a>
-				<?php } ?>
 			</div>
 		</div>
 		
