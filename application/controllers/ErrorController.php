@@ -41,6 +41,8 @@ class ErrorController extends Zend_Controller_Action
         }
         
         $this->view->request   = $errors->request;
+		$this->_helper->layout->setLayout('prelogin');
+		
     }
 
     public function getLog()
@@ -56,19 +58,25 @@ class ErrorController extends Zend_Controller_Action
     public function noadminAction()
     {
         $this->view->message = 'Administrator permission required';
+		$this->_helper->layout->setLayout('prelogin');
 		$this->render('error');
+		
     }
 
     public function noauthAction()
     {
         $this->view->message = 'User permission required';
+		$this->_helper->layout->setLayout('prelogin');
 		$this->render('error');
+		
     }
 
     public function unknownuserAction()
     {
         $this->view->message = 'Unknown User';
+		$this->_helper->layout->setLayout('prelogin');
 		$this->render('error');
+		
     }
 
 

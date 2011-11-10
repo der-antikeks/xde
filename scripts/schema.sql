@@ -29,3 +29,16 @@ CREATE TABLE IF NOT EXISTS `user` (
   `salt` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 );
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `base`
+--
+
+CREATE TABLE IF NOT EXISTS `base` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `owner_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `owner_id` (`owner_id`)
+);

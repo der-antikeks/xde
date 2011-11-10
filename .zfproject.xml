@@ -10,6 +10,10 @@
       <controllersDirectory>
         <controllerFile controllerName="Index">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="login"/>
+          <actionMethod actionName="logout"/>
+          <actionMethod actionName="create"/>
+          <actionMethod actionName="lost"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
         <controllerFile controllerName="Test">
@@ -18,10 +22,10 @@
         </controllerFile>
         <controllerFile controllerName="User">
           <actionMethod actionName="index"/>
-          <actionMethod actionName="login"/>
-          <actionMethod actionName="logout"/>
-          <actionMethod actionName="create"/>
-          <actionMethod actionName="lost"/>
+          <actionMethod actionName="email"/>
+          <actionMethod actionName="password"/>
+          <actionMethod actionName="preferences"/>
+          <actionMethod actionName="delete"/>
         </controllerFile>
         <controllerFile controllerName="Base">
           <actionMethod actionName="index"/>
@@ -37,6 +41,7 @@
       <layoutsDirectory>
         <layoutScriptsDirectory>
           <layoutScriptFile layoutName="layout"/>
+          <layoutScriptFile layoutName="prelogin"/>
         </layoutScriptsDirectory>
       </layoutsDirectory>
       <modelsDirectory>
@@ -66,16 +71,16 @@
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="User">
+          <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="login"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="User">
+          <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="logout"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="User">
+          <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="create"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="User">
+          <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="lost"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Base">
@@ -83,6 +88,18 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Admin">
             <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="email"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="password"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="preferences"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="delete"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

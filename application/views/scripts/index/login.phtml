@@ -1,4 +1,4 @@
-<!-- user/login.phtml -->
+<!-- index/login.phtml -->
 
 <?php
     $translate = Zend_Registry::get('Zend_Translate');
@@ -32,7 +32,7 @@
 			<?php echo $translate->_('Don\'t have an account?'); ?>
 			<a href="<?php 
                 echo $this->url(array(
-                    'controller'    => 'user', 
+                    'controller'    => 'index', 
                     'action'        => 'create'), 
                 null, true); 
             ?>"><?php 
@@ -44,7 +44,7 @@
 			<?php echo $translate->_('Forgotten or lost your login?'); ?>
 			<a href="<?php 
                 echo $this->url(array(
-                    'controller'    => 'user', 
+                    'controller'    => 'index', 
                     'action'        => 'lost'), 
                 null, true); 
             ?>"><?php 
