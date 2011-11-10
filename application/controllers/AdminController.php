@@ -1,6 +1,6 @@
 <?php
 
-class TestController extends Zend_Controller_Action
+class AdminController extends Zend_Controller_Action
 {
 
     public function init()
@@ -8,30 +8,27 @@ class TestController extends Zend_Controller_Action
         $auth = Zend_Auth::getInstance();
         if ($auth->hasIdentity()) {
             $this->identity = $auth->getIdentity();
+        } else {
+            $this->identity = null;
         }
         
     }
-    
+
     public function preDispatch()
     {
         if (! $this->identity) {
             $this->_forward('unknownuser', 'Error');
+        } elseif (! ($this->identity->role == 'admin')) {
+            $this->_forward('noadmin', 'Error');
         }
         
     }
     
     public function indexAction()
     {
-        Zend_Debug::dump($this->identity, 'identity: ');
-        
+        // action body
     }
 
-    public function adminAction()
-    {
-        if (! ($this->identity->role == 'admin')) {
-            $this->_forward('noadmin', 'Error');
-        }
-        
-    }
 
 }
+

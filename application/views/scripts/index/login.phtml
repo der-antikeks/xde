@@ -1,11 +1,55 @@
 <!-- index/login.phtml -->
 
 <?php
-	$translate = Zend_Registry::get('Zend_Translate');
-	
-	$this->headStyle()->appendStyle('');
+    $translate = Zend_Registry::get('Zend_Translate');
+    
+    $this->headStyle()->appendStyle('
+        #view-content
+        {
+            width: 50%;
+            float: left;
+        }
+    ');
 ?>
 
 <div id="view-content">
-	<p>View script for controller <b>Index</b> and script/action name <b>login</b></p>
+    <fieldset class="login">
+		<legend><?php echo $translate->_('Login'); ?></legend>
+		<?php echo $this->form; ?>
+		
+		<?php
+			if ($this->messages) {
+				echo '<ul class="errors">';
+				foreach ($this->messages as $message) {
+					echo '<li>' . $translate->_($message) . '</li>';
+				}
+				echo '</ul>';
+			}
+		?>
+		<hr />
+		
+		<p>
+			<?php echo $translate->_('Don\'t have an account?'); ?>
+			<a href="<?php 
+                echo $this->url(array(
+                    'controller'    => 'index', 
+                    'action'        => 'create'), 
+                null, true); 
+            ?>"><?php 
+                echo $translate->_('Click here to sign up.'); 
+            ?></a>
+		</p>
+		
+		<p>
+			<?php echo $translate->_('Forgotten or lost your login?'); ?>
+			<a href="<?php 
+                echo $this->url(array(
+                    'controller'    => 'index', 
+                    'action'        => 'lost'), 
+                null, true); 
+            ?>"><?php 
+                echo $translate->_('Click here to recover your account.'); 
+            ?></a>
+		</p>
+	</fieldset>
 </div>

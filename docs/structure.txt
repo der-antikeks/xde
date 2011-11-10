@@ -1,0 +1,17 @@
+index
+    create      - register account
+    login       - username-password/3rd-level login
+    logout      - dump session
+
+user
+    email       - change email
+    password    - change password
+    preferences - options/configuration
+    delete      - delete account
+
+base
+    
+
+world
+    
+

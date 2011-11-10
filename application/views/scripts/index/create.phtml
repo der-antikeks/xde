@@ -1,0 +1,30 @@
+<!-- index/create.phtml -->
+
+<?php
+    $translate = Zend_Registry::get('Zend_Translate');
+    
+    $this->headStyle()->appendStyle('
+        #view-content
+        {
+            width: 50%;
+            float: left;
+        }
+    ');
+?>
+
+<div id="view-content">
+    <fieldset class="login">
+		<legend><?php echo $translate->_('Sign up'); ?></legend>
+		<?php echo $this->form; ?>
+		
+		<?php
+			if ($this->messages) {
+				echo '<ul class="errors">';
+				foreach ($this->messages as $message) {
+					echo '<li>' . $translate->_($message) . '</li>';
+				}
+				echo '</ul>';
+			}
+		?>
+	</fieldset>
+</div>
