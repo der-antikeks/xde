@@ -14,8 +14,13 @@
 		<link href="/css/bootstrap.min.css" rel="stylesheet">
 		<link href="/css/style.css" rel="stylesheet">
 		<?php	echo $this->headLink(). PHP_EOL;	?>
+		<style type="text/css" media="screen">
+			body {
+				padding-top:	60px;
+			}
+		</style>
 		<?php	echo $this->headStyle() . PHP_EOL;	?>
-		
+
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 		<?php	echo $this->headScript() . PHP_EOL;	?>
 		
@@ -28,15 +33,23 @@
 		<div class="topbar">
 			<div class="fill">
 				<div class="container">
-					<a class="brand" href="#">XDE</a>
-					<ul class="nav">
-						<li class="active"><a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'index'), null, true); ?>">Index</a> </li>
-						<li><a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'login'), null, true); ?>">Login</a></li>
-						<li><a href="#contact">Contact</a></li>
+					<a class="brand" href="<?php echo $this->url(array('controller' => 'index', 'action' => 'index'), null, true); ?>">XDE</a>
+					
+					<ul class="secondary-nav">
+						<li><a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'login'), null, true); ?>">Sign In</a></li>
 					</ul>
 				</div>
 			</div>
 		</div> <!-- /topbar -->
+		
+		<div id="subnav" class="container">
+			<ul class="tabs pull-right">
+				<li class="active"><a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'index'), null, true); ?>">Home</a></li>
+				<li><a href="#">About</a></li>
+				<li><a href="#">Forums</a></li>
+				<li><a href="#">Help</a></li>
+			</ul>
+		</div> <!-- /subnav -->
 		
 		<div id="content" class="container">
 			<?php
@@ -44,9 +57,15 @@
 			?>
 			
 			<footer>
-				<p>&copy; Company 2011</p>
+				<ul class="foot">
+					<li>Copyright &copy; 2012 Company. All rights reserved</li>
+					<li><a href="#">Terms of Services</a></li>
+					<li><a href="#">Privacy Policy</a></li>
+				</p>
+				
 			</footer>
 		</div> <!-- /container -->
 		
 	</body>
 </html>
+

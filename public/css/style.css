@@ -1,7 +1,46 @@
-body {
-	padding-top: 60px;
-}
 
 .green {
 	color:	#91BE3F;
+}
+
+.topbar a {
+  text-shadow:	none;
+}
+
+.topbar .brand {
+	color:	#91BE3F;
+}
+
+.foot {
+  margin: 0 0 20px;
+  padding: 0;
+  list-style: none;
+  zoom: 1;
+}
+.foot:before,
+.foot:after {
+  display: table;
+  content: "";
+  zoom: 1;
+  *display: inline;
+}
+.foot:after {
+  clear: both;
+}
+.foot > li {
+  float: left;
+  display: block;
+  padding: 0 15px;
+}
+
+ul.sidebar {
+  list-style: none;
+  margin-left: 20px;
+}
+.sidebar a {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 36px;
+  
+  color: #404040;
 }
