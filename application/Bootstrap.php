@@ -72,9 +72,22 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	protected function _initAutoloaders()
 	{
 		$loader = Zend_Loader_Autoloader::getInstance();
+		
 		$loader->registerNamespace('MH_');
+		$loader->registerNamespace('EasyBib_');
 		
 		return $loader;
+	}
+	
+	protected function _initViewHelper()
+	{
+		$this->bootstrap('view');
+		$view = $this->getResource('view');
+		
+		$view->addHelperPath('EasyBib/View/Helper', 'EasyBib_View_Helper');
+		$view->addHelperPath('MH/View/Helper', 'MH_View_Helper');
+		
+		return $view;
 	}
 	
 	protected function _initLog()

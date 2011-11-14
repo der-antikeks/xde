@@ -9,3 +9,17 @@
 <div id="view-content">
 	<p>View script for controller <b>Index</b> and script/action name <b>lost</b></p>
 </div>
+
+<?php
+	if ($this->error) {
+		// show error message
+	} elseif ($this->send) {
+		// We've sent you an email to EMAIL with instructions for resetting your password.
+	} else {
+		// render form
+		/*
+			email - input
+			 - reset my password
+		*/
+	}
+?>

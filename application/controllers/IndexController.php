@@ -73,6 +73,9 @@ class IndexController extends Zend_Controller_Action
 					$auth->clearIdentity();
                     $this->view->messages = $result->getMessages();
                 }
+			} else {
+				$loginForm->buildBootstrapErrorDecorators();
+				$this->view->messages = array('<strong>Error!</strong> Please control your input!'); // extra message on top
 			}
 		}
 		
