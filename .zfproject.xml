@@ -14,6 +14,7 @@
           <actionMethod actionName="logout"/>
           <actionMethod actionName="create"/>
           <actionMethod actionName="lost"/>
+          <actionMethod actionName="reset"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
         <controllerFile controllerName="Test">
@@ -37,6 +38,8 @@
       <formsDirectory>
         <formFile formName="UserCreate"/>
         <formFile formName="UserLogin"/>
+        <formFile formName="UserLost"/>
+        <formFile formName="UserPassword"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -100,6 +103,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="delete"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="reset"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

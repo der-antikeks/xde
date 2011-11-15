@@ -24,14 +24,13 @@ class IndexController extends Zend_Controller_Action
         }
         
     }
-    
+
     public function indexAction()
     {
         
         
     }
-    
-	
+
     public function loginAction()
     {
         $request = $this->getRequest();
@@ -105,10 +104,7 @@ class IndexController extends Zend_Controller_Action
 		if ($request->isPost()) {
 			if ($createForm->isValid($request->getPost())) {
 				
-				$userTable = new Zend_Db_Table(array(
-					'name'	=> 'user',
-					'primary'	=> 'id'
-				));
+				$userTable = new Application_Model_DbTable_User();
 				
 				if ($userTable->fetchRow(
 					$userTable->select()
@@ -132,7 +128,7 @@ class IndexController extends Zend_Controller_Action
 					
 					$id = $userTable->insert(array(
 						'role'			=> $identity->role,
-						'email'		=> $createForm->getValue('email'),
+						'email'		=> strtolower($createForm->getValue('email')),
 						'language'	=> $identity->language,
 						'name'		=> $identity->name,
 						'password'	=> new Zend_Db_Expr('AES_ENCRYPT(CONCAT(' . $userTable->getAdapter()->quote($user_salt) . ', ' . $userTable->getAdapter()->quote($this->salt) . '), ' . $userTable->getAdapter()->quote($createForm->getValue('password')) . ')'),
@@ -157,7 +153,114 @@ class IndexController extends Zend_Controller_Action
 
     public function lostAction()
     {
-        // action body
+        $request = $this->getRequest();
+		$lostForm = new Application_Form_UserLost();
+		
+		$lostForm
+			->setAction('/index/lost')
+			->setMethod('post');
+		
+		if ($request->isPost()) {
+			if ($lostForm->isValid($request->getPost())) {
+				$userTable = new Application_Model_DbTable_User();
+				
+				$user = $userTable->fetchRow(
+					$userTable->select()
+						->where('email = ?', strtolower($lostForm->getValue('email')))
+				);
+				
+				if ($user) {
+					$hash = md5(uniqid(rand()));
+					$user->hash = $hash;
+					$user->save();
+					
+					$url = $request->getScheme() . '://' 
+						. $request->getHttpHost() 
+						. $this->view->url(array(
+							'controller'	=> 'index', 
+							'action'		=> 'reset',
+							'h'				=> $hash
+						), null, true);
+					
+					$message = 'This is an automated message generated to reset your password. Follow the link below to choose a new one:' . "\n\n"
+						. $url . "\n\n"
+						. 'Do not reply to this message, which was sent from an unmonitored e-mail address. Mail sent to this address cannot be answered.' . "\n";
+					
+					$headers = 'From: webmaster@example.com' . "\r\n"
+						. 'Reply-To: webmaster@example.com' . "\r\n"
+						. 'X-Mailer: PHP/' . phpversion();
+					
+					if (mail(
+						$user->email, 
+						'Reset your password',
+						$message,
+						$headers
+					)) {
+						$this->view->messages = array('Password reset link has been sent');
+					} else {
+						$this->view->errors = array('Email could not be sent');
+					}
+					
+				} else {
+					$this->view->errors = array('Email address could not be found');
+				}
+			}
+		}
+		
+		$this->view->form = $lostForm;
+        
     }
 
+    public function resetAction()
+    {
+        $request = $this->getRequest();
+		
+		if (! $hash = $request->getParam('h')) {
+			return $this->view->errors = array('No valid Reset Code found');
+		}
+		
+		$userTable = new Application_Model_DbTable_User();
+		$user = $userTable->fetchRow(
+			$userTable->select()
+				->where('hash = ?', $request->getParam('h'))
+		);
+		
+		if (! $user) {
+			return $this->view->errors = array('User could not be found');
+		}
+			
+		$resetForm = new Application_Form_UserPassword();
+		
+		$resetForm
+			->setAction($this->view->url(array(
+				'controller'	=> 'index', 
+				'action'		=> 'reset',
+				'h'				=> $hash
+			), null, true))
+			->setMethod('post');
+		
+		if ($request->isPost()) {
+			if ($resetForm->isValid($request->getPost())) {
+				
+				$password = new Zend_Db_Expr('AES_ENCRYPT(CONCAT(' . $userTable->getAdapter()->quote($user->salt) . ', ' . $userTable->getAdapter()->quote($this->salt) . '), ' . $userTable->getAdapter()->quote($resetForm->getValue('password')) . ')');
+				$user->password = $password;
+				$user->hash = null;
+				
+				if ($user->save()) {
+					$this->view->messages = array('Your Password has been changed');
+					return $this->view->changed = true;
+				} else {
+					$this->view->errors = array('Failed to change password');
+				}
+				
+			}
+		}
+		
+		$this->view->form = $resetForm;
+        
+    }
+
+
 }
+
+
