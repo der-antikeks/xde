@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `language` varchar(10) NOT NULL,
   `password` varchar(255) NOT NULL,
   `salt` varchar(255) NOT NULL,
+  `hash` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 );
 

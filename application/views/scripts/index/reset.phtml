@@ -1,4 +1,4 @@
-<!-- index/lost.phtml -->
+<!-- index/reset.phtml -->
 
 <?php
     $translate = Zend_Registry::get('Zend_Translate');
@@ -9,36 +9,14 @@
             width: 50%;
             float: left;
         }
-		
-		fieldset input {
-			margin-left: 35%;
-		}
-		
-		fieldset pre {
-			margin-left: 35%;
-			
-			font-family: Monaco, Andale Mono, Courier New, monospace;
-			font-size: 10px;
-
-			display: block;
-			line-height: 18px;
-			
-			background-color: #f5f5f5;
-			border: 1px solid #ccc;
-
-			white-space: pre;
-			white-space: pre-wrap;
-			word-wrap: break-word;
-		}
 	');
 ?>
 
 <div id="view-content">
-	<h2>Forgotten your password?</h2>
-	<p>Please enter your Email address below and press the send button. A password reset link will be sent to you</p>
+	<h2>Create your new password</h2>
 	<br />
     <fieldset class="login">
-		<?php echo $this->form; ?>
+		<?php if (isset($this->form)) echo $this->form; ?>
 		
 		<?php
 			if ($this->errors) {
@@ -55,6 +33,13 @@
 					echo '<li>' . $translate->_($message) . '</li>';
 				}
 				echo '</ul>';
+			}
+			
+			if ($this->changed) {
+				echo '<br /><a href="' . $this->url(array(
+				'controller'	=> 'index', 
+				'action'		=> 'login',
+			), null, true) . '">Sign in</a> with your new password';
 			}
 		?>
 	</fieldset>
