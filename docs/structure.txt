@@ -3,6 +3,10 @@ index
     login       - username-password/3rd-level login
     logout      - dump session
 
+sign up
+sign in
+sign out
+
 user
     email       - change email
     password    - change password
@@ -15,3 +19,11 @@ base
 world
     
 
+home
+profile
+skills
+firends
+groups
+forums
+ecyclopedia
+help
