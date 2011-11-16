@@ -10,3 +10,15 @@ git commit -m 'description'
 
 # uploading local to remote
 git push [remote-name] [branch-name]
+
+
+
+
+# creating feature branch
+git checkout -b myfeature develop
+
+# incorporating finished feature on develop
+git checkout develop
+git merge --no-ff myfeature
+git branch -d myfeature
+git push origin develop
